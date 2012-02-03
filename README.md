@@ -4,8 +4,11 @@ If you're not familiar with Vagrant, read more about it at vagrantup.com.
 To set up, make sure you have ruby gems and VirtualBox (> 4.0) installed. Next:
 
     gem install vagrant
+    vagrant box add base http://files.vagrantup.com/lucid32.box
 
-Finally, clone this repository and type
+If you already have Vagrant, make sure it's a later version (> 0.9.0).
+
+Clone this repository and type
 
     vagrant up
 
