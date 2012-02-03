@@ -1,0 +1,13 @@
+#!upstart
+description "Redis Server"
+
+env USER=<%= node[:redis][:user] %>
+
+start on startup
+stop on shutdown
+
+respawn
+
+exec sudo -u $USER sh -c "/usr/local/bin/redis-server \
+  /etc/redis/redis.conf 2>&1 >> \
+  <%= node[:redis][:log_dir] %>/redis.log"
