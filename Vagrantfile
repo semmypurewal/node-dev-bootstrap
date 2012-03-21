@@ -7,12 +7,14 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "nodejs"
-    chef.add_recipe "nodejs::npm"
+    # Uncomment the line below if you're using a version of node
+    # that doesn't include NPM, (version less than 0.6.3)
+    # chef.add_recipe "nodejs::npm"
     chef.add_recipe "mongodb-debs"
     chef.add_recipe "redis-server"
     chef.json = {
       "nodejs" => {
-        "version" => "0.6.0"
+        "version" => "0.6.12"
       }    	      
     }
   end
