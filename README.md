@@ -14,6 +14,7 @@ Next, clone this repository
     git clone https://github.com/semmypurewal/node-dev-bootstrap.git my_project
 
 Finally, change to your new project directory and start your VM:
+
     cd my_project
     vagrant up
 
