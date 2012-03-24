@@ -11,10 +11,10 @@ Once you have the pre-requisites installed, simply open a terminal and add the b
 
 Next, clone this repository 
 
-    git clone https://github.com/semmypurewal/node-dev-bootstrap.git
+    git clone https://github.com/semmypurewal/node-dev-bootstrap.git my_project
 
-Finally, type
-
+Finally, change to your new project directory and start your VM:
+    cd my_project
     vagrant up
 
 After a few minutes, you should have a virtual dev environment with node, npm, mongodb and redis.
