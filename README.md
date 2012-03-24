@@ -1,14 +1,19 @@
 This is a Vagrant file and set of Chef recipes for building a basic node development environment.
 If you're not familiar with Vagrant, read more about it at vagrantup.com.
 
-To set up, make sure you have ruby gems and VirtualBox (> 4.0) installed. Next:
+To get this to work, you must have VirtualBox (> 4.1.0) and Vagrant (> 1.0) installed. Installers
+for VirtualBox are available at virtualbox.org, and installers for Vagrant are available at 
+vagrantup.com.
 
-    gem install vagrant
+Once you have the pre-requisites installed, simply open a terminal and add the base box:
+
     vagrant box add base http://files.vagrantup.com/lucid32.box
 
-If you already have Vagrant, make sure it's a later version (> 0.9.0).
+Next, clone this repository 
 
-Clone this repository and type
+    git clone https://github.com/semmypurewal/node-dev-bootstrap.git
+
+Finally, type
 
     vagrant up
 

@@ -5,6 +5,9 @@ Vagrant::Config.run do |config|
 
   config.vm.share_folder "app", "/home/vagrant/app", "app"
 
+  # allow for symlinks in the app folder
+  config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"]
+
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "nodejs"
     # Uncomment the line below if you're using a version of node
@@ -14,7 +17,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "redis-server"
     chef.json = {
       "nodejs" => {
-        "version" => "0.6.12"
+        "version" => "0.6.13"
       }    	      
     }
   end
