@@ -31,4 +31,19 @@ You can test out your environment by ssh'ing into your environment and running t
 Next open localhost:3000 in your web browser. If everything worked correctly, you should see
 'Hello World'
 
+## Note to Windows Users
+
+Later versions of VirtualBox do not support symlinks in shared folders on Windows hosts.
+This can cause problems when you're attempting to install certain packages via npm. For
+example, the 'jade' package creates symlinks during installation, and therefore the
+installation fails.
+
+More information is available here: https://www.virtualbox.org/ticket/10085
+
+One workaround is to install an older build of VirtualBox. Anything prior to
+4.1.8 appears to work. Version 4.1.8 can be found here: 
+https://www.virtualbox.org/wiki/Download_Old_Builds_4_1
+
+
+
 
