@@ -41,7 +41,7 @@ installation fails.
 More information is available here: https://www.virtualbox.org/ticket/10085
 
 One workaround is to install an older build of VirtualBox. Anything prior to
-4.1.8 appears to work. Version 4.1.8 can be found here: 
+4.1.8 appears to work. Version 4.1.6 can be found here: 
 https://www.virtualbox.org/wiki/Download_Old_Builds_4_1
 
 
