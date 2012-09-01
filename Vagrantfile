@@ -17,7 +17,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "redis-server"
     chef.json = {
       "nodejs" => {
-        "version" => "0.6.13"
+        "version" => "0.8.8"
       }    	      
     }
   end
