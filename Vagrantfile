@@ -16,7 +16,8 @@ Vagrant::Config.run do |config|
       "nodejs" => {
         "version" => "0.8.8"
         # uncomment the following line to force
-        # node to be built from source
+	# recent versions (> 0.8.4) to be built from
+	# the source code
 	# , "from_source" => true
       }
     }
