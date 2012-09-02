@@ -10,14 +10,14 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "nodejs"
-    # Uncomment the line below if you're using a version of node
-    # that doesn't include NPM, (version less than 0.6.3)
-    # chef.add_recipe "nodejs::npm"
     chef.add_recipe "mongodb-debs"
     chef.add_recipe "redis-server"
     chef.json = {
       "nodejs" => {
-        "version" => "0.8.8",
+        "version" => "0.8.8"
+        # uncomment the following line to force
+        # node to be built from source
+	# , "from_source" => true
       }
     }
   end

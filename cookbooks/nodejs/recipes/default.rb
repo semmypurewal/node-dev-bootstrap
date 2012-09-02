@@ -44,6 +44,19 @@ if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
       make install
     EOH
   end
+
+  if node[:nodejs][:version] < "0.6.3"
+    package "curl"
+
+    bash "install npm" do
+      cwd "/usr/local/src"
+      user "root"
+      cwd "/tmp/"	
+      code <<-EOH
+        curl https://npmjs.org/install.sh | clean=no sh    
+      EOH
+    end
+  end
 else
   bash "install nodejs" do
     cwd "/opt"
