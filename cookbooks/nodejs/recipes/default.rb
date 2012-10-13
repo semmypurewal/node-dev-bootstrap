@@ -43,6 +43,7 @@ if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
       make && \
       make install
     EOH
+    not_if "#{node[:nodejs][:dir]}/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
   end
 
   if node[:nodejs][:version] < "0.6.3"
@@ -55,10 +56,13 @@ if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
       code <<-EOH
         curl https://npmjs.org/install.sh | clean=no sh    
       EOH
+      not_if "#{node[:nodejs][:dir]}/bin/npm -v 2>&1 | grep '#{node[:nodejs][:npm]}'"
     end
   end
+
 else
-  bash "install nodejs" do
+
+  bash "install nodejs binary" do
     cwd "/opt"
     user "root"
     code <<-EOH
@@ -68,5 +72,8 @@ else
       ln -s /opt/node-v#{node[:nodejs][:version]}-linux-x86/bin/node-waf /usr/local/bin/node-waf && \
       ln -s /opt/node-v#{node[:nodejs][:version]}-linux-x86/bin/npm /usr/local/bin/npm
     EOH
+    not_if "/opt/node-v#{node[:nodejs][:version]}-linux-x86/bin/node -v | grep 'v#{node[:nodejs][:version]}'"
   end
+
+
 end
