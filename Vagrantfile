@@ -14,9 +14,9 @@ Vagrant::Config.run do |config|
     chef.add_recipe "redis-server"
     chef.json = {
       "nodejs" => {
-        "version" => "0.8.8"
+        "version" => "0.8.18"
         # uncomment the following line to force
-	# recent versions (> 0.8.4) to be built from
+	# recent versions (> 0.8.5) to be built from
 	# the source code
 	# , "from_source" => true
       }

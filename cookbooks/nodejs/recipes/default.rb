@@ -22,7 +22,15 @@ path = node[:nodejs][:version]>"0.5.0"?
             "http://nodejs.org/dist/v#{node[:nodejs][:version]}/":
             "http://nodejs.org/dist/"
 
-if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
+version_array = node[:nodejs][:version].split(".").map { |x| x.to_i };
+
+from_source = (node[:nodejs] != nil && \
+               node[:nodejs][:from_source] != nil && \
+               node[:nodejs][:from_source]) || \
+               version_array[1] < 8 || \
+               version_array[1] == 8 && version_array[2] < 6
+
+if from_source == true
   include_recipe "build-essential"
 
   case node[:platform]
@@ -32,6 +40,7 @@ if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
       package "libssl-dev"
   end
 
+  # install node.js from source
   bash "install nodejs from source" do
     cwd "/usr/local/src"
     user "root"
@@ -46,6 +55,7 @@ if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
     not_if "#{node[:nodejs][:dir]}/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
   end
 
+  # install npm if the version is less than 0.6.3
   if node[:nodejs][:version] < "0.6.3"
     package "curl"
 
@@ -61,7 +71,7 @@ if node[:nodejs][:from_source] == true or node[:nodejs][:version] < "0.8.6"
   end
 
 else
-
+  # install node.js from the binary
   bash "install nodejs binary" do
     cwd "/opt"
     user "root"
