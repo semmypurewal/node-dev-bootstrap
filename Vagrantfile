@@ -24,6 +24,6 @@ Vagrant::Config.run do |config|
   end
 
   #install node module dependencies
-  config.vm.provision :shell, :inline => "echo 'Installing node modules'; cd app; npm install -q, --quiet: --loglevel error"
+  config.vm.provision :shell, :inline => "if [[ -e 'app/package.json' ]]; then echo 'Installing node modules'; cd app; npm install -q, --quiet: --loglevel error; else echo 'No package.json file found: Skipping npm installation'; fi"
 
 end
