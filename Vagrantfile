@@ -22,4 +22,8 @@ Vagrant::Config.run do |config|
       }
     }
   end
+
+  #install node module dependencies
+  config.vm.provision :shell, :inline => "echo 'Installing node modules'; cd app; npm install -q, --quiet: --loglevel error"
+
 end
