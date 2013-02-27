@@ -1,0 +1,10 @@
+{
+    "name"    : "node-dev-bootstrap",  
+    "version" : "0.0.1",
+    "private" : true,
+ 
+    "dependencies": {
+	"redis"   :  "0.7.x",
+	"mongodb" :  "1.2.x"
+    }
+}
