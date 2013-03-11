@@ -4,7 +4,7 @@
     "private" : true,
  
     "dependencies": {
-	"redis"   :  "0.7.x",
-	"mongodb" :  "1.2.x"
+        "redis"   :  "0.7.x",
+        "mongodb" :  "1.2.x"
     }
 }
