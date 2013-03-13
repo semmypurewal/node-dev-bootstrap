@@ -16,10 +16,20 @@ Vagrant::Config.run do |config|
       "nodejs" => {
         "version" => "0.8.18"
         # uncomment the following line to force
-	# recent versions (> 0.8.5) to be built from
-	# the source code
-	# , "from_source" => true
+        # recent versions (> 0.8.5) to be built from
+        # the source code
+        # , "from_source" => true
       }
     }
+  end
+
+  #install node module dependencies
+  config.vm.provision :shell do |shell|
+    shell.inline = <<-END_SCRIPT 
+                   if [[ -e 'app/package.json' ]]; 
+                    then echo 'Installing node modules'; 
+                    cd app; npm install -q, --quiet: --loglevel error; 
+                   else echo 'No package.json file found: Skipping npm installation'; fi
+                   END_SCRIPT
   end
 end
