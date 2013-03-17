@@ -1,5 +1,5 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "base"
+  config.vm.box = "precise32"
   
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
@@ -7,8 +7,10 @@ Vagrant::Config.run do |config|
 
   config.vm.share_folder "app", "/home/vagrant/app", "app"
 
-  # allow for symlinks in the app folder
-  config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"]
+  # Uncomment the following line to allow for symlinks
+  # in the app folder. This will not work on Windows, and will
+  # not work with Vagrant providers other than VirtualBox
+  # config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"]
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "nodejs"
