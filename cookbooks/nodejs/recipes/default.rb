@@ -18,11 +18,16 @@
 # limitations under the License.
 #
 
-path = node[:nodejs][:version]>"0.5.0"?
+
+# split up teh version to extract integers
+# there's probably a better way to do this
+version_array = node[:nodejs][:version].split(".").map { |x| x.to_i };
+
+# get the path for the appropriate version
+path = version_array[1] > 5 ||
+       version_array[1] == 5 && version_array[2] >= 1?
             "http://nodejs.org/dist/v#{node[:nodejs][:version]}/":
             "http://nodejs.org/dist/"
-
-version_array = node[:nodejs][:version].split(".").map { |x| x.to_i };
 
 from_source = (node[:nodejs] != nil && \
                node[:nodejs][:from_source] != nil && \
