@@ -19,7 +19,7 @@
 #
 
 
-# split up teh version to extract integers
+# split up the version to extract integers
 # there's probably a better way to do this
 version_array = node[:nodejs][:version].split(".").map { |x| x.to_i };
 
