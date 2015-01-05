@@ -1,3 +1,4 @@
+name             "mongodb-debs"
 maintainer       "Promet Solutions"
 maintainer_email "marius@promethost.com"
 license          "Apache 2.0"

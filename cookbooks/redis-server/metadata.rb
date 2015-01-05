@@ -1,5 +1,6 @@
+name              "redis-server"
 maintainer        "Semmy Purewal"
-maintainer_email  "semmypurewal@gmail.com"
+maintainer_email  "me@semmy.me"
 license           "Apache 2.0"
 description       "Installs redis-server package"
 version           "1.0.0"
