@@ -48,9 +48,9 @@ bash "install redis from source" do
      cwd "/usr/local/src"
      user "root"
      code <<-EOH
-     	  wget http://redis.googlecode.com/files/redis-2.4.1.tar.gz && \
-	  tar xzf redis-2.4.1.tar.gz && \
-	  cd redis-2.4.1 && \
+     	  wget http://download.redis.io/redis-stable.tar.gz && \
+	  tar xvzf redis-stable.tar.gz && \
+	  cd redis-stable && \
 	  make && \
 	  make install
      EOH
