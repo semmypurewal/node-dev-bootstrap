@@ -15,21 +15,27 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "nodejs"
     chef.add_recipe "mongodb-debs"
-    # chef.add_recipe "redis-server"
-    chef.json = {
-      "nodejs" => {
-        "version" => "0.10.29"
-        # uncomment the following line to force
-	# recent versions (> 0.8.5) to be built from
-	# the source code
-	# , "from_source" => true
-      }
-    }
+    chef.add_recipe "redis-server"
+    # chef.json = {
+    #   "nodejs" => {
+    #     "version" => "0.10.29"
+    #     # uncomment the following line to force
+    #     # recent versions (> 0.8.5) to be built from
+    #     # the source code
+    #     # , "from_source" => true
+    #   }
+    # }
   end
 
   config.vm.provision :shell, :inline => "sudo apt-get install -y build-essential --no-install-recommends"
-  config.vm.provision :shell, :inline => "sudo apt-get install -y redis-server --no-install-recommends"
-  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby1.9.1-dev --no-install-recommends"
-  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby1.9.3 --no-install-recommends"
+  # config.vm.provision :shell, :inline => "sudo apt-get install -y redis-server --no-install-recommends"
+  # config.vm.provision :shell, :inline => "sudo apt-get install -y ruby1.9.1-dev --no-install-recommends"
+  # config.vm.provision :shell, :inline => "sudo apt-get install -y ruby1.9.3 --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y python-software-properties"
+  config.vm.provision :shell, :inline => "sudo apt-add-repository ppa:brightbox/ruby-ng"
+  config.vm.provision :shell, :inline => "sudo apt-get update"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby2.4-dev --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby2.4 --no-install-recommends"
   config.vm.provision :shell, :inline => "sudo gem install cf"
+  config.vm.provision :shell, :inline => "echo 'Done installing your virtual machine!'"
 end
