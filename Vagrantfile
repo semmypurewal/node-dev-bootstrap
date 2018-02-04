@@ -1,7 +1,5 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "precise32"
-  
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box = "ubuntu/xenial32"
 
   config.vm.forward_port 3000, 3000
 
@@ -12,24 +10,13 @@ Vagrant::Config.run do |config|
   # not work with Vagrant providers other than VirtualBox
   # config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"]
 
-  config.vm.provision :chef_solo do |chef|
-    chef.add_recipe "nodejs"
-    chef.add_recipe "mongodb-debs"
-    # chef.add_recipe "redis-server"
-    chef.json = {
-      "nodejs" => {
-        "version" => "0.10.29"
-        # uncomment the following line to force
-	# recent versions (> 0.8.5) to be built from
-	# the source code
-	# , "from_source" => true
-      }
-    }
-  end
-
-  config.vm.provision :shell, :inline => "sudo apt-get install -y build-essential --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get upgrade"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y build-essential libssl-dev --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get -y install nodejs npm"
+  config.vm.provision :shell, :inline => "sudo ln -sf /usr/bin/nodejs /usr/bin/node"
   config.vm.provision :shell, :inline => "sudo apt-get install -y redis-server --no-install-recommends"
-  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby1.9.1-dev --no-install-recommends"
-  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby1.9.3 --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y mongodb --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby2.3-dev --no-install-recommends"
+  config.vm.provision :shell, :inline => "sudo apt-get install -y ruby2.3 --no-install-recommends"
   config.vm.provision :shell, :inline => "sudo gem install cf"
 end
