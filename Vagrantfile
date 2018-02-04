@@ -10,7 +10,7 @@ Vagrant::Config.run do |config|
   # not work with Vagrant providers other than VirtualBox
   # config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"]
 
-  config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get upgrade"
+  config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get -y upgrade"
   config.vm.provision :shell, :inline => "sudo apt-get install -y build-essential libssl-dev --no-install-recommends"
   config.vm.provision :shell, :inline => "sudo apt-get -y install nodejs npm"
   config.vm.provision :shell, :inline => "sudo ln -sf /usr/bin/nodejs /usr/bin/node"
